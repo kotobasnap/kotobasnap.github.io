@@ -1,0 +1,12 @@
+title: Kotoba Snap
+description: Kotoba Snap 的隐私政策与支持页面 / Privacy policy and support for Kotoba Snap
+lang: zh-Hans
+
+# No theme gem on purpose: _layouts/default.html is fully self-contained
+# (inline CSS, no webfonts, no external requests), so GitHub Pages needs
+# nothing beyond Jekyll's core markdown rendering. A privacy policy page that
+# phoned out to a CDN would undercut its own contents.
+plugins: []
+
+exclude:
+  - README.md
