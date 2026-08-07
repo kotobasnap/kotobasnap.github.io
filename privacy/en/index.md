@@ -8,8 +8,7 @@ description: How Kotoba Snap handles your information.
 <p class="langswitch"><a href="/privacy/">简体中文</a></p>
 
 **Effective date: 2026-07-28**
-**Last updated: 2026-07-28**
-
+**Last updated: 2026-08-07**
 
 Kotoba Snap ("the app") is a Japanese vocabulary learning tool: you photograph or pick an image, the app recognizes the Japanese text in it, and helps you turn unfamiliar words into flashcards with a review schedule.
 
@@ -71,6 +70,40 @@ Text recognition (OCR) runs **locally on your device**:
 **Your images and their recognized text are not sent to us, and are not sent to Google.** On the latter, Google states in the [ML Kit Terms of Service](https://developers.google.com/ml-kit/terms) that when you use ML Kit APIs, processing of the input data (images, video, text) fully happens on-device, and ML Kit does not send that data or the resulting outputs to Google servers. Apple's VisionKit is a built-in on-device system capability and likewise recognizes text locally.
 
 Japanese word segmentation, dictionary lookup, and review scheduling are likewise entirely local — the dictionary ships with the app and needs no network connection.
+
+### 3.1 Reference translation is also on-device, but its language pack is downloaded
+
+The app can show a sentence-by-sentence **reference translation** (Japanese → Simplified Chinese) of the recognized text. Translation also runs **locally on your device**:
+
+- On iOS 18 and later, via Apple's built-in system translation. The feature is not offered below iOS 18.
+- On Android, via Google ML Kit's on-device translation.
+
+**Neither your images nor the recognized text are sent anywhere in order to translate them** — not to us, not to Google or Apple.
+
+**One part does use the network, and we state it separately: the translation language pack does not ship with the app and has to be downloaded the first time you use the feature.** That is a real network request, it happens only after you tap to start it, and what is downloaded is a general-purpose language model — **the request carries none of your images or text**. Once downloaded the pack stays on your device and translation needs no network afterwards.
+
+On Android that download is performed by Google's ML Kit; on iOS it is performed by the system and follows your own cellular-data settings.
+
+### 3.2 What needs the network, and what does not
+
+In one sentence: **apart from downloading a language pack the first time you use Reference Translation, nothing in this app needs a network connection.**
+
+| Feature | Needs network? |
+|---|---|
+| Taking a photo / picking from the library | **No** |
+| Text recognition (OCR) | **No** |
+| Furigana | **No** |
+| Dictionary lookup, candidates, glosses | **No** (the dictionary ships with the app) |
+| Creating, editing, searching and organising cards | **No** |
+| Review and review scheduling | **No** |
+| Revisiting a source image and its recognized text | **No** |
+| Backup export / import | **No** |
+| **Reference translation** — first use | **Yes**: downloads a language pack, once |
+| **Reference translation** — after the pack is downloaded | **No** |
+
+In other words: **once the pack has been downloaded, the whole app works in airplane mode.**
+
+One more thing needs stating separately because it is not tied to any feature: the Google ML Kit SDK integrated in this app automatically sends limited diagnostic data (see section 4). It is not triggered by any particular feature, and it does **not** include your images or text.
 
 ## 4. Diagnostic data collected by a third-party SDK
 
