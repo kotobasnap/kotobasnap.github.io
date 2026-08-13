@@ -8,7 +8,7 @@ description: How Kotoba Snap handles your information.
 <p class="langswitch"><a href="/privacy/">简体中文</a></p>
 
 **Effective date: 2026-07-28**
-**Last updated: 2026-08-07**
+**Last updated:2026-08-13**
 
 Kotoba Snap ("the app") is a Japanese vocabulary learning tool: you photograph or pick an image, the app recognizes the Japanese text in it, and helps you turn unfamiliar words into flashcards with a review schedule.
 
@@ -78,7 +78,7 @@ The app can show a sentence-by-sentence **reference translation** (Japanese → 
 - On iOS 18 and later, via Apple's built-in system translation. The feature is not offered below iOS 18.
 - On Android, via Google ML Kit's on-device translation.
 
-**Neither your images nor the recognized text are sent anywhere in order to translate them** — not to us, not to Google or Apple.
+**Neither your images nor the recognized text are sent anywhere to produce a *reference translation*** — not to us, not to Google or Apple. (AI translation is a different thing and does send them; it is off by default — see 3.3.)
 
 **One part does use the network, and we state it separately: the translation language pack does not ship with the app and has to be downloaded the first time you use the feature.** That is a real network request, it happens only after you tap to start it, and what is downloaded is a general-purpose language model — **the request carries none of your images or text**. Once downloaded the pack stays on your device and translation needs no network afterwards.
 
@@ -86,7 +86,7 @@ On Android that download is performed by Google's ML Kit; on iOS it is performed
 
 ### 3.2 What needs the network, and what does not
 
-In one sentence: **apart from downloading a language pack the first time you use Reference Translation, nothing in this app needs a network connection.**
+In one sentence: **by default, apart from downloading a language pack the first time you use Reference Translation, nothing in this app needs a network connection.** If you turn on AI Translation and enter your own API key, that feature does use the network — it is off by default. See the table below and section 3.3.
 
 | Feature | Needs network? |
 |---|---|
@@ -100,8 +100,32 @@ In one sentence: **apart from downloading a language pack the first time you use
 | Backup export / import | **No** |
 | **Reference translation** — first use | **Yes**: downloads a language pack, once |
 | **Reference translation** — after the pack is downloaded | **No** |
+| **AI translation** (off by default; you must turn it on and add your own key) | **Yes**: each translation sends the recognized text to the provider you chose |
 
-In other words: **once the pack has been downloaded, the whole app works in airplane mode.**
+In other words: **once the pack has been downloaded, the whole app works in airplane mode — as long as you have not turned AI Translation on.**
+
+### 3.3 AI translation (optional, off by default)
+
+This feature is off by default. Turning it on takes two deliberate steps: switching it on in settings, and entering **an API key you obtained yourself from a provider**. Until you have done both, the feature has no entry point anywhere in the app and makes no network requests of any kind.
+
+Once it is on, each time **you tap** to translate:
+
+- **The recognized text is sent to the provider you chose.** Nothing is translated automatically; it goes only when you ask.
+- **The source image is never sent.** Not at any point.
+- **The key is kept only in this device's secure storage** (iOS Keychain / Android Keystore). It is not included in backups and does not move to a new phone — after switching devices you will need to enter it again. The app never sends the key to us (we have no server), and never writes it to logs, crash reports, or export files.
+- **Usage is billed to your own account with that provider.** We do not handle, take a share of, or see your usage.
+
+**Whichever provider you choose is where your text goes, under that provider's own terms.** The providers currently available, and what matters about each:
+
+| Provider | What matters |
+|---|---|
+| Claude (Anthropic) | Its commercial terms state that customer content is not used to train models |
+| ChatGPT (OpenAI) | API data is not used for training by default; abuse-monitoring logs are retained for up to 30 days |
+| DeepSeek | **Data is processed and stored in mainland China, and this provider uses submitted content for model training by default** — turning that off is something you do on their own site |
+
+The app shows an explanation and asks for your agreement before the first time it sends text to a given provider, and **asks again if you switch providers**, because who receives your text has changed.
+
+We make no representations about how these providers handle your data — that is a relationship between you and them. The table reflects each provider's published terms as of 2026-08-08; where it differs from a provider's current terms, theirs govern.
 
 One more thing needs stating separately because it is not tied to any feature: the Google ML Kit SDK integrated in this app automatically sends limited diagnostic data (see section 4). It is not triggered by any particular feature, and it does **not** include your images or text.
 
