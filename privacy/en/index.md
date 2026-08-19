@@ -8,7 +8,7 @@ description: How Kotoba Snap handles your information.
 <p class="langswitch"><a href="/privacy/">简体中文</a></p>
 
 **Effective date: 2026-07-28**
-**Last updated:2026-08-13**
+**Last updated: 2026-08-19**
 
 Kotoba Snap ("the app") is a Japanese vocabulary learning tool: you photograph or pick an image, the app recognizes the Japanese text in it, and helps you turn unfamiliar words into flashcards with a review schedule.
 
@@ -102,7 +102,7 @@ In one sentence: **by default, apart from downloading a language pack the first 
 | **Reference translation** — after the pack is downloaded | **No** |
 | **AI translation** (off by default; you must turn it on and add your own key) | **Yes**: each translation sends the recognized text to the provider you chose |
 
-In other words: **once the pack has been downloaded, the whole app works in airplane mode — as long as you have not turned AI Translation on.**
+In other words: **once the pack has been downloaded, the app's features work in airplane mode — as long as you have not turned AI Translation on.** (The privacy-policy link under Settings → About opens a web page in your browser, which naturally needs the network; it does not handle any of your data.)
 
 ### 3.3 AI translation (optional, off by default)
 
